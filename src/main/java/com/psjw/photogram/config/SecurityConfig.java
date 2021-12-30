@@ -21,10 +21,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //super.configure(http); //이것 떄문에 로그인 페이지를 가로챔
         //super 삭제 - 기존 시큐리티가 가지고 있는 기능이 다 비활성화됨
         http.csrf().disable();
+        http.headers().frameOptions().disable();
 
         http.authorizeRequests()
                 //antMatchers의 주소는 인증이 필요
-                .antMatchers("/","/user/**","/image/**","/subscribe/**","/comment/**")
+                .antMatchers("/","/user/**","/image/**","/subscribe/**","/comment/**","/api/**")
                 .authenticated()
                 //antMatchers 이외의 요청은 모드 허가
                 .anyRequest().permitAll()

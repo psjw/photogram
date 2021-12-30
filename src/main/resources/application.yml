@@ -22,7 +22,7 @@ spring:
     open-in-view: true
     show-sql: true
     hibernate:
-      ddl-auto: update #create
+      ddl-auto: update #create, update, none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:

@@ -1,5 +1,6 @@
 package com.psjw.photogram.handler;
 
+import com.psjw.photogram.handler.ex.CustomApiException;
 import com.psjw.photogram.handler.ex.CustomValidationApiException;
 import com.psjw.photogram.handler.ex.CustomValidationException;
 import com.psjw.photogram.util.Script;
@@ -37,5 +38,10 @@ public class ControllerExceptionHandler {
         // 2. Ajax 통신 - CMRespDto
         // 3. Android 통신 - CMRespDto
         return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()),HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomApiException.class)
+    public ResponseEntity<?> apiException(CustomApiException e){
+        return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), null), HttpStatus.BAD_REQUEST);
     }
 }
